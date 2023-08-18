@@ -1,7 +1,6 @@
 package skypro.employeeBook.controller;
 
 import org.springframework.web.bind.annotation.*;
-import skypro.employeeBook.EmployeeBookApplication;
 import skypro.employeeBook.dto.Employee;
 import skypro.employeeBook.service.EmployeeService;
 
@@ -24,7 +23,7 @@ public class EmployeeController {
 
     @GetMapping("/remove")
     public Employee removeEmployee(@RequestParam String firstname, @RequestParam String lastname) {
-        return employeeService.remoteEmployee(firstname, lastname);
+        return employeeService.removeEmploye(firstname, lastname);
     }
 
     @GetMapping("/find")
