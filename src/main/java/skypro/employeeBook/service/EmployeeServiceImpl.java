@@ -20,7 +20,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Employee addEmployee(String firstname, String lastname) {
+    public Employee addEmployee(String firstname, String lastname, int department, double salary) {
         if (employees.size() == EMPLOYEE_SIZE) {
             throw new EmployeeStorageIsFullException();
         }
@@ -28,7 +28,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         if (employees.containsKey(key)) {
             throw new EmployeeAlreadyAddedException();
         }
-        Employee employee = new Employee(firstname, lastname);
+        Employee employee = new Employee(firstname, lastname, department, salary );
         employees.put(key, employee);
         return employee;
     }
@@ -56,10 +56,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Collection<Employee> findAll() {
+
         return employees.values();
     }
 
     private String generateKey(String firstname, String lastname) {
+
         return firstname + lastname;
     }
 }

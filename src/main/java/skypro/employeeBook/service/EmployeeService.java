@@ -5,7 +5,7 @@ import skypro.employeeBook.dto.Employee;
 import java.util.Collection;
 
 public interface EmployeeService {
-    Employee addEmployee(String firstname, String lastname);
+    Employee addEmployee(String firstname, String lastname, int department, double salary);
 
     Employee removeEmploye(String firstname, String lastname);
 
