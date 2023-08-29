@@ -26,10 +26,12 @@ public class Employee {
     }
 
     public int getDepartment() {
+
         return department;
     }
 
     public double getSalary() {
+
         return salary;
     }
 
@@ -38,12 +40,14 @@ public class Employee {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Employee employee = (Employee) o;
-        return Objects.equals(firstname, employee.firstname) && Objects.equals(lastname, employee.lastname);
+        return department == employee.department && Double.compare(salary, employee.salary) == 0
+                && Objects.equals(firstname, employee.firstname)
+                && Objects.equals(lastname, employee.lastname);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstname, lastname);
+        return Objects.hash(firstname, lastname, department, salary);
     }
 
     @Override
@@ -51,6 +55,8 @@ public class Employee {
         return "Employee{" +
                 "firstname='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +
+                ", department=" + department +
+                ", salary=" + salary +
                 '}';
     }
 }

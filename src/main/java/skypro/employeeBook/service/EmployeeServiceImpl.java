@@ -13,7 +13,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 
     private Map<String, Employee> employees;
-    private static final int EMPLOYEE_SIZE = 3;
+    private static final int EMPLOYEE_SIZE = 5;
 
     public EmployeeServiceImpl() {
         this.employees = new HashMap<>();
