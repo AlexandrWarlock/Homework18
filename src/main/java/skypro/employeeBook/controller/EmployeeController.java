@@ -34,6 +34,7 @@ public class EmployeeController {
 
     @GetMapping()
     public Collection<Employee> getAll() {
+
         return employeeService.findAll();
     }
 }
