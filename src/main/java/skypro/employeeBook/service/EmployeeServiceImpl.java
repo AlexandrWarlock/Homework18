@@ -1,5 +1,6 @@
 package skypro.employeeBook.service;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import skypro.employeeBook.dto.Employee;
 import skypro.employeeBook.exception.EmployeeAlreadyAddedException;
@@ -28,7 +29,10 @@ public class EmployeeServiceImpl implements EmployeeService {
         if (employees.containsKey(key)) {
             throw new EmployeeAlreadyAddedException();
         }
-        Employee employee = new Employee(firstname, lastname, department, salary );
+        Employee employee = new Employee(StringUtils.capitalize(firstname),
+                StringUtils.capitalize(lastname),
+                department,
+                salary );
         employees.put(key, employee);
         return employee;
     }
@@ -61,7 +65,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     private String generateKey(String firstname, String lastname) {
-
         return firstname + lastname;
     }
 }
