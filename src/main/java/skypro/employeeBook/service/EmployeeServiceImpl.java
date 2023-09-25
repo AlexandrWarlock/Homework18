@@ -1,5 +1,6 @@
 package skypro.employeeBook.service;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import skypro.employeeBook.dto.Employee;
 import skypro.employeeBook.exception.EmployeeAlreadyAddedException;
@@ -12,10 +13,11 @@ import java.util.*;
 public class EmployeeServiceImpl implements EmployeeService {
 
 
-    private Map<String, Employee> employees;
+    private final Map<String, Employee> employees;
     private static final int EMPLOYEE_SIZE = 5;
 
     public EmployeeServiceImpl() {
+
         this.employees = new HashMap<>();
     }
 
@@ -28,13 +30,16 @@ public class EmployeeServiceImpl implements EmployeeService {
         if (employees.containsKey(key)) {
             throw new EmployeeAlreadyAddedException();
         }
-        Employee employee = new Employee(firstname, lastname, department, salary );
+        Employee employee = new Employee(StringUtils.capitalize(firstname),
+                StringUtils.capitalize(lastname),
+                department,
+                salary );
         employees.put(key, employee);
         return employee;
     }
 
     @Override
-    public Employee removeEmploye(String firstname, String lastname) {
+    public Employee removeEmployee(String firstname, String lastname) {
         String key = generateKey(firstname, lastname);
         Employee employee = employees.remove(key);
         if (Objects.isNull(employee)) {
@@ -42,10 +47,8 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
         return employee;
     }
-
     @Override
     public Employee getEmployee(String firstname, String lastname) {
-
         String key = generateKey(firstname, lastname);
         Employee employee = employees.get(key);
         if (Objects.isNull(employee)) {

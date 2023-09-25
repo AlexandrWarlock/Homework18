@@ -3,6 +3,7 @@ package skypro.employeeBook.controller;
 import org.springframework.web.bind.annotation.*;
 import skypro.employeeBook.dto.Employee;
 import skypro.employeeBook.service.EmployeeService;
+import skypro.employeeBook.util.EmployeeNameValidator;
 
 import java.util.Collection;
 
@@ -19,16 +20,19 @@ public class EmployeeController {
 
     public Employee addEmployee(@RequestParam String firstname, @RequestParam String lastname,
                                 int department, double salary) {
+        EmployeeNameValidator.validateIsAlpha(firstname, lastname);
         return employeeService.addEmployee(firstname, lastname, department, salary);
     }
 
     @GetMapping("/remove")
     public Employee removeEmployee(@RequestParam String firstname, @RequestParam String lastname) {
-        return employeeService.removeEmploye(firstname, lastname);
+        EmployeeNameValidator.validateIsAlpha(firstname, lastname);
+        return employeeService.removeEmployee(firstname, lastname);
     }
 
     @GetMapping("/find")
     public Employee findEmployee(@RequestParam String firstname, @RequestParam String lastname) {
+        EmployeeNameValidator.validateIsAlpha(firstname, lastname);
         return employeeService.getEmployee(firstname, lastname);
     }
 
