@@ -13,10 +13,11 @@ import java.util.*;
 public class EmployeeServiceImpl implements EmployeeService {
 
 
-    private Map<String, Employee> employees;
+    private final Map<String, Employee> employees;
     private static final int EMPLOYEE_SIZE = 5;
 
     public EmployeeServiceImpl() {
+
         this.employees = new HashMap<>();
     }
 
@@ -38,7 +39,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Employee removeEmploye(String firstname, String lastname) {
+    public Employee removeEmployee(String firstname, String lastname) {
         String key = generateKey(firstname, lastname);
         Employee employee = employees.remove(key);
         if (Objects.isNull(employee)) {
@@ -46,10 +47,8 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
         return employee;
     }
-
     @Override
     public Employee getEmployee(String firstname, String lastname) {
-
         String key = generateKey(firstname, lastname);
         Employee employee = employees.get(key);
         if (Objects.isNull(employee)) {
@@ -65,6 +64,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     private String generateKey(String firstname, String lastname) {
+
         return firstname + lastname;
     }
 }

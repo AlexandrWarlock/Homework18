@@ -27,7 +27,7 @@ public class EmployeeController {
     @GetMapping("/remove")
     public Employee removeEmployee(@RequestParam String firstname, @RequestParam String lastname) {
         EmployeeNameValidator.validateIsAlpha(firstname, lastname);
-        return employeeService.removeEmploye(firstname, lastname);
+        return employeeService.removeEmployee(firstname, lastname);
     }
 
     @GetMapping("/find")
